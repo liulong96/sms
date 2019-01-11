@@ -6,3 +6,5 @@ target
 *.iml
 *.target
 *.idea
+*.class
+/target/
