@@ -48,24 +48,13 @@
         var number = $("#number").val();
         var tels = $("#tels").val();
         //alert(model+sign+content+number);
+        alert("发送成功");
         $.post('${ctx}/sendIndex/send',{model:model,sign:sign,content:content,number:number,tels:tels},
             function (r) {
                 if (r.status) {
                     $("#result").html(r.result);
                 }
         });
-//        $.ajax({
-//            type: 'POST',
-//            url: ,
-//            contentType: "application/json",
-//            data: {},
-//            success: function (r) {
-//                if (r.status) {
-//                    $("#result").html(r.result);
-//                }
-//            }
-//        });
-
     }
 </script>
 </body>
