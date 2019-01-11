@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sms.dao.user.UserDao">
+    <!-- Result Map-->
+    <resultMap id="BaseResultMap" type="sms.entity.user.User">
+        <result column="id" property="id"/>
+        <result column="loginName" property="loginName"/>
+        <result column="password" property="password"/>
+        <result column="nickName" property="nickName"/>
+        <result column="name" property="name"/>
+        <result column="sex" property="sex"/>
+        <result column="mobile" property="mobile"/>
+        <result column="birthDay" property="birthDay"/>
+        <result column="email" property="email"/>
+        <result column="type" property="type"/>
+        <result column="longitude" property="longitude"/>
+        <result column="latitude" property="latitude"/>
+        <result column="random" property="random"/>
+        <result column="status" property="status"/>
+        <result column="headPicId" property="headPicId"/>
+        <result column="cardAuthen" property="cardAuthen"/>
+        <result column="createTime" property="createTime"/>
+    </resultMap>
+
+    <!-- t_user table all fields -->
+    <sql id="Base_Column_List">
+        id,loginName,password,nickName,name,sex,mobile,birthDay,email,type,longitude,latitude,random,status,headPicId,cardAuthen,createTime
+    </sql>
+
+    <!-- 查询条件 -->
+    <sql id="Base_Where_Clause">
+        where 1=1
+        <trim suffixOverrides=",">
+            <if test="id != null and id != ''">
+                and id = #{id}
+            </if>
+            <if test="loginName != null and loginName != ''">
+                and loginName = #{loginName}
+            </if>
+            <if test="password != null and password != ''">
+                and password = #{password}
+            </if>
+            <if test="nickName != null and nickName != ''">
+                and nickName = #{nickName}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name}
+            </if>
+            <if test="sex != null and sex != ''">
+                and sex = #{sex}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                and mobile = #{mobile}
+            </if>
+            <if test="birthDay != null and birthDay != ''">
+                and birthDay = #{birthDay}
+            </if>
+            <if test="email != null and email != ''">
+                and email = #{email}
+            </if>
+            <if test="type != null and type != ''">
+                and type = #{type}
+            </if>
+            <if test="longitude != null and longitude != ''">
+                and longitude = #{longitude}
+            </if>
+            <if test="latitude != null and latitude != ''">
+                and latitude = #{latitude}
+            </if>
+            <if test="random != null and random != ''">
+                and random = #{random}
+            </if>
+            <if test="status != null and status != ''">
+                and status = #{status}
+            </if>
+            <if test="headPicId != null and headPicId != ''">
+                and headPicId = #{headPicId}
+            </if>
+            <if test="cardAuthen != null and cardAuthen != ''">
+                and cardAuthen = #{cardAuthen}
+            </if>
+            <if test="createTime != null and createTime != ''">
+                and createTime = #{createTime}
+            </if>
+        </trim>
+    </sql>
+
+    <!-- 插入记录 -->
+    <insert id="insert" parameterType="User">
+        insert into t_user(id,loginName,password,nickName,name,sex,mobile,birthDay,email,type,longitude,latitude,random,status,headPicId,cardAuthen,createTime)
+ values(#{id},#{loginName},#{password},#{nickName},#{name},#{sex},#{mobile},#{birthDay},#{email},#{type},#{longitude},#{latitude},#{random},#{status},#{headPicId},#{cardAuthen},now())
+    </insert>
+
+    <!-- 根据id，修改记录-->
+    <update id="updateByPrimaryKey" parameterType="User">
+        update t_user set loginName=#{loginName},password=#{password},nickName=#{nickName},name=#{name},sex=#{sex},mobile=#{mobile},birthDay=#{birthDay},email=#{email},type=#{type},longitude=#{longitude},latitude=#{latitude},random=#{random},status=#{status},headPicId=#{headPicId},cardAuthen=#{cardAuthen}, where id=#{id}
+    </update>
+
+    <!-- 修改记录，修改不为空的字段 -->
+    <update id="updateByPrimaryKeySelective" parameterType="User">
+        update t_user set
+        <trim suffixOverrides=",">
+            <if test="loginName != null  ">
+                loginName=#{loginName},
+            </if>
+            <if test="password != null  ">
+                password=#{password},
+            </if>
+            <if test="nickName != null  ">
+                nickName=#{nickName},
+            </if>
+            <if test="name != null  ">
+                name=#{name},
+            </if>
+            <if test="sex != null  ">
+                sex=#{sex},
+            </if>
+            <if test="mobile != null  ">
+                mobile=#{mobile},
+            </if>
+            <if test="birthDay != null  ">
+                birthDay=#{birthDay},
+            </if>
+            <if test="email != null  ">
+                email=#{email},
+            </if>
+            <if test="type != null  ">
+                type=#{type},
+            </if>
+            <if test="longitude != null  ">
+                longitude=#{longitude},
+            </if>
+            <if test="latitude != null  ">
+                latitude=#{latitude},
+            </if>
+            <if test="random != null  ">
+                random=#{random},
+            </if>
+            <if test="status != null  ">
+                status=#{status},
+            </if>
+            <if test="headPicId != null  ">
+                headPicId=#{headPicId},
+            </if>
+            <if test="cardAuthen != null  ">
+                cardAuthen=#{cardAuthen},
+            </if>
+            <if test="createTime != null  ">
+                createTime=#{createTime},
+            </if>
+        </trim>
+        where id=#{id}
+    </update>
+
+    <!-- 根据id查询 用户表 -->
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user where id = #{id}
+    </select>
+
+    <!-- 删除记录 -->
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete 	 from t_user where id = #{id}
+    </delete>
+
+    <!-- 用户表 列表总数-->
+    <select id="queryByCount" resultType="java.lang.Integer" parameterType="User">
+        select count(1) from t_user
+        <include refid="Base_Where_Clause"/>
+    </select>
+
+    <!-- 查询用户表列表 -->
+    <select id="queryByList" resultMap="BaseResultMap" parameterType="User">
+        select
+        <include refid="Base_Column_List"/>
+        from t_user
+        <include refid="Base_Where_Clause"/>
+        <if test="pageUtil != null">
+            limit #{pageUtil.startRow},#{pageUtil.endRow}
+        </if>
+    </select>
+</mapper>   
