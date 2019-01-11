@@ -1,0 +1,9 @@
+target
+.idea/*
+.idea*
+\.idea*
+.idea/
+oc_erp/.idea
+/oc_erp/ocm-web/ocm-web.iml
+/oc_erp/ocm-web/target
+*.iml
