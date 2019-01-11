@@ -29,4 +29,6 @@ public interface UserDao {
 
     List<User> queryByList(User record);
 
+    Integer getTotal();
+
 }

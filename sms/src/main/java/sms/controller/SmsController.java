@@ -1,14 +1,18 @@
 package sms.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import sms.dao.user.UserDao;
+import sms.entity.user.User;
 import sms.sendController.sendSms;
 
 import javax.ws.rs.FormParam;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +26,16 @@ public class SmsController {
     public String index() {
         return "index";
     }
+
+    @Autowired
+    private UserDao userDao;
+
+    @RequestMapping(value = "/getUser",method = RequestMethod.GET)
+    @ResponseBody
+    public Integer getList(){
+        return userDao.getTotal();
+    }
+
 
     @RequestMapping(value = "/send",method = RequestMethod.POST)
     @ResponseBody

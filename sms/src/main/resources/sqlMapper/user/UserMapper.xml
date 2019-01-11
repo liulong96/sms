@@ -173,11 +173,11 @@
     <!-- 查询用户表列表 -->
     <select id="queryByList" resultMap="BaseResultMap" parameterType="User">
         select
-        <include refid="Base_Column_List"/>
-        from t_user
-        <include refid="Base_Where_Clause"/>
-        <if test="pageUtil != null">
-            limit #{pageUtil.startRow},#{pageUtil.endRow}
-        </if>
+       *
+        from wb_user
+
     </select>
-</mapper>   
+    <select id="getTotal" resultType="java.lang.Integer">
+        SELECT COUNT(*) from wb_user
+    </select>
+</mapper>

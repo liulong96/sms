@@ -33,6 +33,7 @@
     <!-- 配置自动扫描的包 -->
     <context:component-scan base-package="sms.controller"></context:component-scan>
     <!-- spring 扫描注解配置 -->
+    <context:component-scan base-package="sms.service"/>
     <context:component-scan base-package="sms.task"/>
 
     <mvc:interceptors>
