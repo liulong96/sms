@@ -15,20 +15,6 @@ import java.util.List;
  */
 public interface UserDao {
 
-    int insert(User record);
-
-    int updateByPrimaryKey(User record);
-
-    int updateByPrimaryKeySelective(User record);
-
-    User selectByPrimaryKey(@Param(value = "id") Long id);
-
-    int deleteByPrimaryKey(@Param(value = "id") Long id);
-
-    int queryByCount(User record);
-
-    List<User> queryByList(User record);
-
     Integer getTotal();
 
 }

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="sms.dao.user.UserSmsListDao">
+    <!-- Result Map-->
+    <resultMap id="BaseResultMap" type="sms.entity.user.UserSmsList">
+        <result property="id" column="id"/>
+        <result property="pId" column="p_id"/>
+        <result property="createDate" column="create_date"/>
+        <result property="tel" column="tel"/>
+        <result property="createDate" column="create_date"/>
+        <result property="content" column="content"/>
+    </resultMap>
+
+    <insert id="insert" parameterType="UserSmsList">
+        INSERT INTO sms_user_list(id,p_id,tel,create_date,content)
+        VALUES (#{id},#{pId},#{tel},now(),#{content})
+    </insert>
+
+    <select id="getList" resultMap="BaseResultMap">
+        SELECT
+        id,p_id,tel,create_date,content
+        FROM sms_user_list
+        WHERE 1=1
+        <if test="pId != null">
+            and p_id= #{pId}
+        </if>
+    </select>
+    <select id="getTotal" resultType="java.lang.Integer">
+        SELECT
+        COUNT(*)
+        FROM sms_user_list
+        WHERE 1=1
+        <if test="pId != null">
+            and p_id= #{pId}
+        </if>
+    </select>
+
+
+</mapper>

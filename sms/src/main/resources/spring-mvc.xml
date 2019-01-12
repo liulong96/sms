@@ -14,9 +14,6 @@
     <!-- 增加定时任务插件 -->
     <context:annotation-config/>
 
-    <!-- 开启这个配置 spring才能识别@Scheduled注解 -->
-    <task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
-    <task:scheduler id="qbScheduler" pool-size="10"/>
 
     <!-- 注册HandlerMapper、HandlerAdapter两个映射类 -->
       <mvc:annotation-driven />
@@ -35,6 +32,7 @@
     <!-- spring 扫描注解配置 -->
     <context:component-scan base-package="sms.service"/>
     <context:component-scan base-package="sms.task"/>
+    <bean class="sms.until.SpringContextUtil"/>
 
     <mvc:interceptors>
         <mvc:interceptor>
@@ -48,5 +46,9 @@
             </bean>
         </mvc:interceptor>
     </mvc:interceptors>
+
+    <!-- 开启这个配置 spring才能识别@Scheduled注解 -->
+    <task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
+    <task:scheduler id="qbScheduler" pool-size="10"/>
 
 </beans>

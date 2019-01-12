@@ -16,6 +16,9 @@
         <!--扫描service包下所有使用注解的类型-->
         <context:component-scan base-package="sms.service"/>
 
-
+        <!--配置事务管理器-->
+        <bean id="transactionManage" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+                <property name="dataSource" ref="dataSource"/>
+        </bean>
 
 </beans>

@@ -1,18 +1,16 @@
 package sms.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import sms.dao.user.UserDao;
-import sms.entity.user.User;
 import sms.sendController.sendSms;
 
-import javax.ws.rs.FormParam;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,6 +19,8 @@ import java.util.Map;
 @Controller
 @RequestMapping(value = "/sendIndex")
 public class SmsController {
+
+    private Logger logger = LoggerFactory.getLogger(SmsController.class);
 
     @RequestMapping(value = "", method = RequestMethod.GET)
     public String index() {
@@ -47,7 +47,7 @@ public class SmsController {
         Map<String, Object> map = new HashMap<>();
         try {
             sendSms send = new sendSms();
-            String s = send.send(sign, model, content, tels, number);
+            String s = send.send("25852236781787202",sign, model, content, tels, number);
             map.put("status", true);
             map.put("result", s);
         } catch (Exception e) {
