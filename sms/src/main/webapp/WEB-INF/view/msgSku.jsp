@@ -17,6 +17,7 @@
 
 <table id="mainSku"></table>
 
+
 <script type="application/javascript">
 
     layui.use('table', function () {
@@ -24,7 +25,7 @@
 
         table.render({
             elem: '#main'
-            , height: 312
+            , height: 260
             , url: '${ctx}/sendIndex/getMsg' //数据接口
             , page: true, //开启分页
             method: 'post',
@@ -33,7 +34,7 @@
                 , {field: 'name', title: '用户名', width: 150}
                 , {field: 'appKey', title: 'appKey', width: 200}
                 , {field: 'total', title: '总数', width: 150}
-                , {field: 'status', title: '状态', width: 177}
+                , {field: 'status', title: '状态', width: 177, templet: statusStr}
                 , {field: 'createDate', title: '创建时间', width: 180}
                 , {field: 'createUser', title: '创建人', width: 150}
             ]]
@@ -41,10 +42,9 @@
 
 
         table.render({
-            elem: '#mainSku'
-            , height: 312,
+            elem: '#mainSku',
+            height: 312,
             id: 'listReload',
-
             method: 'post',
             cols: [[
                 {field: 'id', title: 'ID', width: 80, fixed: 'left'},
@@ -70,6 +70,14 @@
 
     function returnIndex() {
         window.location.href = "${ctx}/sendIndex";
+    }
+
+    function statusStr(d) {
+        if (d.status == 0){
+            return "启用";
+        }else {
+            return  "禁用";
+        }
     }
 
 </script>
