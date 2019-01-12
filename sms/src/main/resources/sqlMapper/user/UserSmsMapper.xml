@@ -23,6 +23,12 @@
         <if test="status != null">
             and status= #{status}
         </if>
+        <if test="startRow!=null and row !=null">
+            limit #{startRow},#{row}
+        </if>
+    </select>
+    <select id="getTotal" resultType="java.lang.Integer">
+        SELECT  COUNT(*) FROM sms_user
     </select>
 
 

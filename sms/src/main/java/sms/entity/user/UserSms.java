@@ -16,6 +16,25 @@ public class UserSms {
     private String createDate;
     private String createUser;
 
+    public Integer startRow;
+    public Integer row;
+
+    public Integer getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(Integer startRow) {
+        this.startRow = startRow;
+    }
+
+    public Integer getRow() {
+        return row;
+    }
+
+    public void setRow(Integer row) {
+        this.row = row;
+    }
+
     public Long getId() {
         return id;
     }

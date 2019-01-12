@@ -21,4 +21,8 @@ public class UserSmsService {
         return  userSmsDao.getList(userSms);
     }
 
+    public Integer getTotal() {
+        return userSmsDao.getTotal();
+    }
+
 }

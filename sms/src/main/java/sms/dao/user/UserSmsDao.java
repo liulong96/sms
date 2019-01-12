@@ -11,4 +11,6 @@ public interface UserSmsDao {
 
     public List<UserSms> getList(UserSms userSms);
 
+    Integer getTotal();
+
 }

@@ -33,12 +33,17 @@
             <td><textarea id="tels" name="tels" style="height: 100px;width: 700px;"></textarea></td>
         </tr>
         <tr>
+            <td style="text-align: center">appkey:</td>
+            <td><input id="appkey" name="appkey" /></td>
+        </tr>
+        <tr>
             <td style="text-align: center">验证码位数:</td>
             <td><input id="number" name="number"/></td>
         </tr>
     </table>
 </form>
 <button class="btn btn-mini" style="margin-left: 300px;" type="button" onclick="sendMsg()">发送</button>
+<button class="btn btn-mini" style="margin-left: 300px;" type="button" onclick="msgSku()">短信明细</button>
 <div id="result"></div>
 <script type="application/javascript">
     function sendMsg() {
@@ -47,14 +52,18 @@
         var content = $("#content").val();
         var number = $("#number").val();
         var tels = $("#tels").val();
+        var appkey = $("#appkey").val();
         //alert(model+sign+content+number);
         alert("发送成功");
-        $.post('${ctx}/sendIndex/send',{model:model,sign:sign,content:content,number:number,tels:tels},
+        $.post('${ctx}/sendIndex/send',{model:model,sign:sign,content:content,number:number,appkey:appkey,tels:tels},
             function (r) {
                 if (r.status) {
                     $("#result").html(r.result);
                 }
         });
+    }
+    function msgSku() {
+        window.location.href = "${ctx}/sendIndex/msgSku";
     }
 </script>
 </body>
