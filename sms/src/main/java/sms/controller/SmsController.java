@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import sms.dao.user.UserDao;
 import sms.entity.user.UserSms;
 import sms.entity.user.UserSmsList;
+import sms.send.Client;
 import sms.sendController.sendSms;
 import sms.service.UserSmsListService;
 import sms.service.UserSmsService;
@@ -115,6 +116,21 @@ public class SmsController {
         } catch (Exception e) {
             e.printStackTrace();
             return map;
+        }
+    }
+
+
+    @RequestMapping(value = "/getMoney", method = RequestMethod.POST)
+    @ResponseBody
+    public Double getMoney() {
+        try {
+            Client client = new Client("7SDK-LHW-0588-QFYLS", "ljct2016");
+            double balance = client.getBalance();
+            logger.info("-------------->" + balance);
+            return balance;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
         }
     }
 

@@ -43,7 +43,8 @@
     </table>
 </form>
 <button class="btn btn-mini" style="margin-left: 300px;" type="button" onclick="sendMsg()">发送</button>
-<button class="btn btn-mini" style="margin-left: 300px;" type="button" onclick="msgSku()">短信明细</button>
+<button class="btn btn-mini" style="margin-left: 30px;" type="button" onclick="msgSku()">短信明细</button>
+<button class="btn btn-mini" style="margin-left: 30px;" type="button" onclick="getMoney()">查询余额</button>
 <div id="result"></div>
 <script type="application/javascript">
     function sendMsg() {
@@ -64,6 +65,11 @@
     }
     function msgSku() {
         window.location.href = "${ctx}/sendIndex/msgSku";
+    }
+    function getMoney() {
+        $.post('${ctx}/sendIndex/getMoney', null, function (r) {
+            alert("剩余金额:" + r + "元");
+        });
     }
 </script>
 </body>
